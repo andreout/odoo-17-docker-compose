@@ -1,6 +1,6 @@
 version: '2'
 services:
-  db:
+  odoodb:
     image: postgres:16
     user: root
     environment:
@@ -15,14 +15,14 @@ services:
     image: odoo:17
     user: root
     depends_on:
-      - db
+      - odoodb
     ports:
       - "10017:8069"
       - "20017:8072" # live chat
     tty: true
     command: --
     environment:
-      - HOST=db
+      - HOST=odoodb
       - USER=odoo
       - PASSWORD=odoo17@2023
     volumes:
