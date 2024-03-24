@@ -17,9 +17,9 @@ if [ "$#" -lt 4 ]; then
     read CHAT
     echo "Informe a senha mestre do Odoo"
     read MASTERPASSWORD
-    bash run.sh $DESTINATION $PORT $CHAT $MASTERPASSWORD
-    exit 1
+
 fi
+createodoo(){
 #create network external to link with other services
 docker network create -d bridge netproxy
 
@@ -40,3 +40,5 @@ sed -i 's/minh4passAleat0ria/'$MASTERPASSWORD'/g' $DESTINATION/etc/odoo.conf
 docker-compose -f $DESTINATION/docker-compose.yml up -d
 
 echo 'Started Odoo @ http://localhost:'$PORT' | Master Password: '$MASTERPASSWORD' | Live chat port: '$CHAT
+}
+createodoo
