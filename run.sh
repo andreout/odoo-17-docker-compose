@@ -5,14 +5,10 @@ CHAT=$3
 MASTERPASSWORD=$4
 # Verifica se MASTERPASSWORD está definida
 if [ -z "$MASTERPASSWORD" ]; then
-    echo "Por favor, insira a senha mestra:"
-    read MASTERPASSWORD
+    exit 1
 fi
 #create network external to link with other services
 docker network create -d bridge netproxy
-
-#CONFIGURAR MASTER PASSWORD DO ODOO
-sed -i 's/minh4passAleat0ria/'$MASTERPASSWORD'/g' $DESTINATION/etc/odoo.conf
 
 # clone Odoo directory
 git clone --depth=1 https://github.com/andreout/odoo-17-docker-compose $DESTINATION
@@ -25,6 +21,8 @@ if grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then echo $(grep -F 
 sudo sysctl -p
 sed -i 's/10017/'$PORT'/g' $DESTINATION/docker-compose.yml
 sed -i 's/20017/'$CHAT'/g' $DESTINATION/docker-compose.yml
+#CONFIGURAR MASTER PASSWORD DO ODOO
+sed -i 's/minh4passAleat0ria/'$MASTERPASSWORD'/g' $DESTINATION/etc/odoo.conf
 # run Odoo
 docker-compose -f $DESTINATION/docker-compose.yml up -d
 
