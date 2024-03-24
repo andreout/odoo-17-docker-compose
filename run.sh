@@ -5,15 +5,10 @@ CHAT=$3
 MASTERPASSWORD=$4
 # Verifica se o número de parâmetros é igual a 4
 if [ "$#" -ne 4 ]; then
-    echo "Informe o destino do clone do repositório"
-    read DESTINATION
-    echo "Informe a porta para o Odoo"
-    read PORT
-    echo "Informe a porta para o Live Chat"
-    read CHAT
-    echo "Informe a senha mestre do Odoo"
-    read MASTERPASSWORD
-
+    read -p "Informe o destino do clone do repositório: " DESTINATION
+    read -p "Informe a porta para o Odoo: " PORT
+    read -p "Informe a porta para o Live Chat: " CHAT
+    read -p  "Informe a senha mestre do Odoo: " MASTERPASSWORD
 fi
 createodoo(){
 #create network external to link with other services
