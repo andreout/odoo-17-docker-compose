@@ -1,4 +1,8 @@
 version: '2'
+networks:
+  netproxy:
+    external: true
+    name: netproxy
 services:
   odoodb:
     image: postgres:16
@@ -10,6 +14,8 @@ services:
     restart: always             # run as a service
     volumes:
         - ./postgresql:/var/lib/postgresql/data
+    networks:
+      netproxy:
 
   odoo17:
     image: odoo:17
@@ -34,4 +40,7 @@ services:
       - ./odoo-web-data:/var/lib/odoo
 
     restart: always             # run as a service
-    
+    networks:
+      netproxy:
+
+   
