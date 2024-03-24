@@ -5,10 +5,6 @@ CHAT=$3
 MASTERPASSWORD=$4
 # Verifica se o número de parâmetros é igual a 4
 if [ "$#" -ne 4 ]; then
-    echo "Uso: $0 DESTINATION PORT CHAT MASTERPASSWORD"
-    exit 1
-fi
-if [ "$#" -lt 4 ]; then
     echo "Informe o destino do clone do repositório"
     read DESTINATION
     echo "Informe a porta para o Odoo"
