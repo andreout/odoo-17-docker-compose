@@ -2,8 +2,17 @@
 DESTINATION=$1
 PORT=$2
 CHAT=$3
+MASTERPASSWORD=$4
 #create network external to link with other services
 docker network create -d bridge netproxy
+# Verifica se MASTERPASSWORD está definida
+if [ -z "$MASTERPASSWORD" ]; then
+    echo "Por favor, insira a senha mestra:"
+    read MASTERPASSWORD
+fi
+#CONFIGURAR MASTER PASSWORD DO ODOO
+sed -i 's/minh4passAleat0ria/'$MASTERPASSWORD'/g' $DESTINATION/etc/odoo.conf
+
 # clone Odoo directory
 git clone --depth=1 https://github.com/andreout/odoo-17-docker-compose $DESTINATION
 rm -rf $DESTINATION/.git
@@ -18,4 +27,4 @@ sed -i 's/20017/'$CHAT'/g' $DESTINATION/docker-compose.yml
 # run Odoo
 docker-compose -f $DESTINATION/docker-compose.yml up -d
 
-echo 'Started Odoo @ http://localhost:'$PORT' | Master Password: minhng.info | Live chat port: '$CHAT
+echo 'Started Odoo @ http://localhost:'$PORT' | Master Password: '$MASTERPASSWORD' | Live chat port: '$CHAT
