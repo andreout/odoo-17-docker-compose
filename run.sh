@@ -3,13 +3,14 @@ DESTINATION=$1
 PORT=$2
 CHAT=$3
 MASTERPASSWORD=$4
-#create network external to link with other services
-docker network create -d bridge netproxy
 # Verifica se MASTERPASSWORD está definida
 if [ -z "$MASTERPASSWORD" ]; then
     echo "Por favor, insira a senha mestra:"
     read MASTERPASSWORD
 fi
+#create network external to link with other services
+docker network create -d bridge netproxy
+
 #CONFIGURAR MASTER PASSWORD DO ODOO
 sed -i 's/minh4passAleat0ria/'$MASTERPASSWORD'/g' $DESTINATION/etc/odoo.conf
 
