@@ -5,18 +5,14 @@
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run the following to set up first Odoo instance @ `localhost:10017` (default master password: `minhng.info`):
 
 ``` bash
-curl -s https://raw.githubusercontent.com/andreout/odoo-17-docker-compose/master/run.sh | sudo bash -s odoo-one 10017 20017
-```
-and/or run the following to set up another Odoo instance @ `localhost:11017` (default master password: `minhng.info`):
-
-``` bash
-curl -s https://raw.githubusercontent.com/andreoutj/odoo-17-docker-compose/master/run.sh | sudo bash -s odoo-two 11017 21017
+curl -s https://raw.githubusercontent.com/andreout/odoo-17-docker-compose/master/run.sh -o run.sh && sudo bash ./run.sh 
 ```
 
 Some arguments:
-* First argument (**odoo-one**): Odoo deploy folder
-* Second argument (**10017**): Odoo port
-* Third argument (**20017**): live chat port
+* First argument (****): Odoo deploy folder
+* Second argument (****): Odoo port
+* Third argument (******): live chat port
+* Fourth argument (******): Master Password to Odoo
 
 If `curl` is not found, install it:
 
@@ -79,7 +75,7 @@ The **addons/** folder contains custom addons. Just put your custom addons if yo
 
 * To change Odoo configuration, edit file: **etc/odoo.conf**.
 * Log file: **etc/odoo-server.log**
-* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
+* Default database password (**admin_passwd**) is `minh4passAleat0ria`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
 
 ## Odoo container management
 
