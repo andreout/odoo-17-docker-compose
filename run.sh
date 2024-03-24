@@ -2,6 +2,8 @@
 DESTINATION=$1
 PORT=$2
 CHAT=$3
+#create network external to link with other services
+docker network create -d bridge netproxy
 # clone Odoo directory
 git clone --depth=1 https://github.com/andreout/odoo-17-docker-compose $DESTINATION
 rm -rf $DESTINATION/.git
