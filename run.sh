@@ -8,6 +8,18 @@ if [ "$#" -ne 4 ]; then
     echo "Uso: $0 DESTINATION PORT CHAT MASTERPASSWORD"
     exit 1
 fi
+if [ "$#" -lt 4 ]; then
+    echo "Informe o destino do clone do repositório"
+    read DESTINATION
+    echo "Informe a porta para o Odoo"
+    read PORT
+    echo "Informe a porta para o Live Chat"
+    read CHAT
+    echo "Informe a senha mestre do Odoo"
+    read MASTERPASSWORD
+    bash run.sh $DESTINATION $PORT $CHAT $MASTERPASSWORD
+    exit 1
+fi
 #create network external to link with other services
 docker network create -d bridge netproxy
 
